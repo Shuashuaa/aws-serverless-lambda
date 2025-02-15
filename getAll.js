@@ -1,19 +1,10 @@
-const { DynamoDBClient, GetItemCommand } = require("@aws-sdk/client-dynamodb");
+const { DynamoDBClient, ScanCommand } = require("@aws-sdk/client-dynamodb");
 
 const dynamoDbClient = new DynamoDBClient({}); // Initialize DynamoDB client
 
-exports.getAll = async (event) => {
+exports.getAllRecords = async (event) => {
   try {
     console.log("Incoming event:", event);
-
-    const { id } = event.pathParameters || {}; // Extract 'id' from the dynamic path parameter
-
-    if (!id) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ message: "Missing required path parameter 'id'" }),
-      };
-    }
 
     // Ensure the DynamoDB table name is set
     const tableName = process.env.DYNAMODB_TABLE;
@@ -24,44 +15,42 @@ exports.getAll = async (event) => {
       };
     }
 
-    // Construct the GetItem command to retrieve the item with the specified id
+    // Construct the Scan command to retrieve all items from the table
     const params = {
-      TableName: tableName,
-      Key: {
-        id: { N: id.toString() }, // Use the id path parameter as the key
-      },
+      TableName: tableName, // Table name from environment variable
     };
 
-    console.log("GetItem params:", params);
+    console.log("Scan params:", params);
 
-    const command = new GetItemCommand(params); // Create GetItemCommand to retrieve the item
+    const command = new ScanCommand(params); // Create ScanCommand to retrieve all items
 
     const data = await dynamoDbClient.send(command); // Send the command to DynamoDB
 
-    if (!data.Item) {
-      return {
-        statusCode: 404,
-        body: JSON.stringify({ message: `Item with id ${id} not found` }),
-      };
-    }
+    // If no items are returned, send an empty array
+    const items = data.Items || [];
 
-    // Format the retrieved item
-    const formattedItem = {
-      id: data.Item.id.N,
-      sample_product_name: data.Item.sample_product_name.S,
-      sample_product_price: data.Item.sample_product_price.N,
-      created_at: data.Item.created_at.S,
-    };
+    // Log the raw items for debugging
+    console.log("Raw items from DynamoDB:", items);
+
+    // Format the items as an array of objects with error handling
+    const formattedItems = items.map((item) => {
+      return {
+        id: item.id ? item.id.N : "Unknown", // Check if 'id' exists
+        sample_product_name: item.sample_product_name ? item.sample_product_name.S : "Unknown", // Check if 'sample_product_name' exists
+        sample_product_price: item.sample_product_price ? item.sample_product_price.N : "Unknown", // Check if 'sample_product_price' exists
+        created_at: item.created_at ? item.created_at.S : "Unknown", // Check if 'created_at' exists
+      };
+    });
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: "Item retrieved successfully", data: formattedItem }),
+      body: JSON.stringify({ message: "Items retrieved successfully", data: formattedItems }),
     };
   } catch (error) {
-    console.error("Error retrieving item:", error);
+    console.error("Error retrieving items:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: "Error retrieving item", error: error.message }),
+      body: JSON.stringify({ message: "Error retrieving items", error: error.message }),
     };
   }
 };

@@ -86,6 +86,7 @@ deploy:
 
 access to test:
 - POST - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/insert
+- GET - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/get/{id}
 - GET - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/
 - PUT - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/update/{id}
 - DELETE - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/delete/{id}

@@ -21,11 +21,17 @@ functions:
       - httpApi:
           path: /insert
           method: post
-  getAll:
-    handler: getAll.getAll
+  getSpecific:
+    handler: getSpecific.getSpecific
     events:
       - httpApi:
           path: /get/{id}
+          method: get
+  getAll:
+    handler: getAll.getAllRecords
+    events:
+      - httpApi:
+          path: /
           method: get
   update:
     handler: update.update
