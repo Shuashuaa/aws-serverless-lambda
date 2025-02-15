@@ -12,6 +12,9 @@ exports.getAllRecords = async (event) => {
       return {
         statusCode: 500,
         body: JSON.stringify({ message: "DYNAMODB_TABLE environment variable is not set" }),
+        headers: {
+          "Access-Control-Allow-Origin": "*" // Allow any origin for CORS
+        }
       };
     }
 
@@ -45,12 +48,20 @@ exports.getAllRecords = async (event) => {
     return {
       statusCode: 200,
       body: JSON.stringify({ message: "Items retrieved successfully", data: formattedItems }),
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Allow any origin for CORS
+        "Content-Type": "application/json" // Content type is JSON
+      }
     };
   } catch (error) {
     console.error("Error retrieving items:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ message: "Error retrieving items", error: error.message }),
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Allow any origin for CORS
+        "Content-Type": "application/json" // Content type is JSON
+      }
     };
   }
 };

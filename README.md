@@ -90,3 +90,5 @@ access to test:
 - GET - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/
 - PUT - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/update/{id}
 - DELETE - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/delete/{id}
+
+- UPLOAD - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/generate-signed-url?fileName=uploads/image.png&fileType=image/png

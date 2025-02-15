@@ -12,6 +12,10 @@ exports.getSpecific = async (event) => {
       return {
         statusCode: 400,
         body: JSON.stringify({ message: "Missing required path parameter 'id'" }),
+        headers: {
+            "Access-Control-Allow-Origin": "*", // Allow any origin for CORS
+            "Content-Type": "application/json" // Content type is JSON
+          }
       };
     }
 
@@ -21,6 +25,10 @@ exports.getSpecific = async (event) => {
       return {
         statusCode: 500,
         body: JSON.stringify({ message: "DYNAMODB_TABLE environment variable is not set" }),
+        headers: {
+            "Access-Control-Allow-Origin": "*", // Allow any origin for CORS
+            "Content-Type": "application/json" // Content type is JSON
+          }
       };
     }
 
@@ -42,6 +50,10 @@ exports.getSpecific = async (event) => {
       return {
         statusCode: 404,
         body: JSON.stringify({ message: `Item with id ${id} not found` }),
+        headers: {
+            "Access-Control-Allow-Origin": "*", // Allow any origin for CORS
+            "Content-Type": "application/json" // Content type is JSON
+          }
       };
     }
 
@@ -56,12 +68,20 @@ exports.getSpecific = async (event) => {
     return {
       statusCode: 200,
       body: JSON.stringify({ message: "Item retrieved successfully", data: formattedItem }),
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Allow any origin for CORS
+        "Content-Type": "application/json" // Content type is JSON
+      }
     };
   } catch (error) {
     console.error("Error retrieving item:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ message: "Error retrieving item", error: error.message }),
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Allow any origin for CORS
+        "Content-Type": "application/json" // Content type is JSON
+      }
     };
   }
 };

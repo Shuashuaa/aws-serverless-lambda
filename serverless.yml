@@ -1,6 +1,4 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
 org: sampleorg1
-# "service" is the name of this project. This will also be added to your AWS resource names.
 service: sample-jovi-app
 
 provider:
@@ -13,6 +11,7 @@ provider:
       Resource: "*"
   environment:
     DYNAMODB_TABLE: sample-db-21
+    BUCKET_NAME: sample-jovi-bucket
 
 functions:
   insert:
@@ -33,6 +32,7 @@ functions:
       - httpApi:
           path: /
           method: get
+          cors: true
   update:
     handler: update.update
     events:
@@ -45,9 +45,10 @@ functions:
       - httpApi:
           path: /delete/{id}
           method: delete
-  # hello:
-  #   handler: handler.hello
-  #   events:
-  #     - httpApi:
-  #         path: /
-  #         method: get
+          cors: true
+  upload:
+    handler: getSignedUrl.signUrl
+    events:
+      - httpApi:
+          path: /generate-signed-url
+          method: get
