@@ -1,0 +1,47 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: sampleorg1
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: sample-jovi-app
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-southeast-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action: "*"
+      Resource: "*"
+  environment:
+    DYNAMODB_TABLE: sample-db-21
+
+functions:
+  insert:
+    handler: insert.handler
+    events:
+      - httpApi:
+          path: /insert
+          method: post
+  getAll:
+    handler: getAll.getAll
+    events:
+      - httpApi:
+          path: /
+          method: get
+  update:        
+    handler: update.update
+    events:
+      - httpApi:
+          path: /update
+          method: put
+  delete:        
+    handler: delete.delete
+    events:
+      - httpApi:
+          path: /delete
+          method: delete
+  # hello:
+  #   handler: handler.hello
+  #   events:
+  #     - httpApi:
+  #         path: /
+  #         method: get
