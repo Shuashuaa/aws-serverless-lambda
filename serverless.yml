@@ -1,17 +1,35 @@
 org: sampleorg1
-service: sample-jovi-app
+service: my-serverless-app
 
 provider:
   name: aws
   runtime: nodejs20.x
-  region: ap-southeast-2
+  region: ap-southeast-1
   iamRoleStatements:
     - Effect: Allow
       Action: "*"
       Resource: "*"
   environment:
-    DYNAMODB_TABLE: sample-db-21
-    BUCKET_NAME: sample-jovi-bucket
+    DYNAMODB_TABLE: serverless-joshua-db
+    # BUCKET_NAME: sample-jovi-bucket
+  # httpApi:
+  #   cors: true
+  httpApi:
+    cors:
+      allowedOrigins:
+        - http://localhost:5173
+        - http://192.168.1.6:5173
+        - https://react-crud-serverless-jsh.netlify.app
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+      allowedMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      allowCredentials: true
 
 functions:
   insert:
@@ -32,7 +50,6 @@ functions:
       - httpApi:
           path: /
           method: get
-          cors: true
   update:
     handler: update.update
     events:
@@ -45,10 +62,9 @@ functions:
       - httpApi:
           path: /delete/{id}
           method: delete
-          cors: true
-  upload:
-    handler: getSignedUrl.signUrl
-    events:
-      - httpApi:
-          path: /generate-signed-url
-          method: get
+  # upload:
+  #   handler: getSignedUrl.signUrl
+  #   events:
+  #     - httpApi:
+  #         path: /generate-signed-url
+  #         method: get
