@@ -84,6 +84,9 @@ deploy:
 - aws configure
 - serverless deploy
 
+dynamodb:
+- create table
+
 access to test:
 - POST - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/insert
 - GET - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/get/{id}
