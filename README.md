@@ -11,10 +11,9 @@ authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
 -->
 
 ## Access to Test:
-
-- POST - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/insert
 - GET - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/
 - GET - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/get/{id}
+- POST - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/insert
 - PUT - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/update/{id}
 - DELETE - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/delete/{id}
 
