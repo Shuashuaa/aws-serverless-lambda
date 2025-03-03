@@ -10,6 +10,16 @@ authorName: 'Serverless, Inc.'
 authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
 -->
 
+## Access to Test:
+
+- POST - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/insert
+- GET - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/
+- GET - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/get/{id}
+- PUT - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/update/{id}
+- DELETE - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/delete/{id}
+
+---------------------------------------
+
 # Serverless Framework Node HTTP API on AWS
 
 This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.
@@ -68,14 +78,7 @@ Now you can invoke the function as before, but this time the function will be ex
 
 When you are done developing, don't forget to run `serverless deploy` to deploy the function to the cloud.
 
----------------------------------------
-
-access to test:
-- POST - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/insert
-- GET - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/get/{id}
-- GET - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/
-- PUT - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/update/{id}
-- DELETE - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/delete/{id}
+<!-- --------------------------------------- -->
 
 <!-- - POST - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/insert
 - GET - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/get/{id}
