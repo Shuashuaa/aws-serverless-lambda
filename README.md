@@ -70,28 +70,16 @@ When you are done developing, don't forget to run `serverless deploy` to deploy 
 
 ---------------------------------------
 
-aws cli install:
-C:>https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
-
-serverless install:
-https://www.serverless.com/framework/docs/getting-started
-- npm i serverless -g
-- serverless
-- serverless login
-
-deploy:
-- open app to vscode
-- aws configure
-- serverless deploy
-
-dynamodb:
-- create table
-
 access to test:
-- POST - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/insert
+- POST - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/insert
+- GET - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/get/{id}
+- GET - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/
+- PUT - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/update/{id}
+- DELETE - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/delete/{id}
+
+<!-- - POST - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/insert
 - GET - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/get/{id}
 - GET - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/
 - PUT - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/update/{id}
 - DELETE - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/delete/{id}
-
-- UPLOAD - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/generate-signed-url?fileName=uploads/image.png&fileType=image/png
+- UPLOAD - https://fwhnu5yop2.execute-api.ap-southeast-2.amazonaws.com/generate-signed-url?fileName=uploads/image.png&fileType=image/png -->
