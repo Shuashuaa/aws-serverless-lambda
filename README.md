@@ -17,6 +17,7 @@ authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
 - PUT - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/update/{id}
 - DELETE - https://rnz7auon30.execute-api.ap-southeast-1.amazonaws.com/delete/{id}
 
+### Authorization
 - x-api-key
 - thisisasamplesecretkey
 
