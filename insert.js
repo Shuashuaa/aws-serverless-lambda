@@ -53,7 +53,7 @@ exports.handler = async (event) => {
     const requestBody = JSON.parse(cleanBody);
 
     // Validate the request body
-    if (!requestBody.sample_product_name || !requestBody.sample_product_price) {
+    if (!requestBody.userId || !requestBody.sample_product_name || !requestBody.sample_product_price) {
       return {
         statusCode: 400,
         headers: {
@@ -93,6 +93,7 @@ exports.handler = async (event) => {
     // Prepare the item for DynamoDB
     const item = {
       id: { N: Math.floor(Math.random() * 1000000).toString() },
+      userId: { S: requestBody.userId  },
       sample_product_name: { S: requestBody.sample_product_name },
       sample_product_price: { N: requestBody.sample_product_price.toString() },
       created_at: { S: new Date().toISOString() },
