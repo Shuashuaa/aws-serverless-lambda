@@ -39,6 +39,7 @@ exports.getAllRecords = async (event) => {
     const formattedItems = items.map((item) => {
       return {
         id: item.id ? item.id.N : "Unknown", // Check if 'id' exists
+        userId: item.userId ? item.userId.S : "Unknown", // Check if 'userId' exists
         sample_product_name: item.sample_product_name ? item.sample_product_name.S : "Unknown", // Check if 'sample_product_name' exists
         sample_product_price: item.sample_product_price ? item.sample_product_price.N : "Unknown", // Check if 'sample_product_price' exists
         product_image: item.product_image ? item.product_image.S : "Unknown", // Check if 'product_image' exists

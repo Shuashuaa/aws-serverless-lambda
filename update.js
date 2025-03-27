@@ -95,12 +95,18 @@ exports.update = async (event) => {
       };
     }
 
-    const updateExpression = "SET sample_product_name = :sample_product_name, sample_product_price = :sample_product_price, updated_at = :updated_at";
-    const expressionAttributeValues = {
+    let updateExpression = "SET sample_product_name = :sample_product_name, sample_product_price = :sample_product_price, updated_at = :updated_at";
+    let expressionAttributeValues = {
       ":sample_product_name": { S: requestBody.sample_product_name },
       ":sample_product_price": { N: requestBody.sample_product_price.toString() },
       ":updated_at": { S: new Date().toISOString() },
     };
+
+    // Add product_image only if it exists in requestBody
+    if (requestBody.product_image) {
+      updateExpression += ", product_image = :product_image";
+      expressionAttributeValues[":product_image"] = { S: requestBody.product_image };
+    }
 
     const params = {
       TableName: tableName,

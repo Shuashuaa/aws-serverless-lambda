@@ -67,7 +67,7 @@ exports.handler = async (event) => {
     }
 
     // Validate the request body
-    if (!requestBody.sample_product_name || !requestBody.sample_product_price) {
+    if (!requestBody.userId || !requestBody.sample_product_name || !requestBody.sample_product_price) {
       return {
         statusCode: 400,
         headers: {
