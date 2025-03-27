@@ -62,6 +62,7 @@ exports.getSpecific = async (event) => {
       id: data.Item.id.N,
       sample_product_name: data.Item.sample_product_name.S,
       sample_product_price: data.Item.sample_product_price.N,
+      product_image: data.Item.product_image.S,
       created_at: data.Item.created_at.S,
     };
 

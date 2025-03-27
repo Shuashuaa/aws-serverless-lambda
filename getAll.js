@@ -42,6 +42,7 @@ exports.getAllRecords = async (event) => {
         userId: item.userId ? item.userId.S : "Unknown", // Check if 'userId' exists
         sample_product_name: item.sample_product_name ? item.sample_product_name.S : "Unknown", // Check if 'sample_product_name' exists
         sample_product_price: item.sample_product_price ? item.sample_product_price.N : "Unknown", // Check if 'sample_product_price' exists
+        product_image: item.product_image ? item.product_image.S : "Unknown", // Check if 'product_image' exists
         created_at: item.created_at ? item.created_at.S : "Unknown", // Check if 'created_at' exists
       };
     });
