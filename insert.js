@@ -52,6 +52,20 @@ exports.handler = async (event) => {
     const cleanBody = event.body.replace(/\r?\n|\r/g, '').trim();
     const requestBody = JSON.parse(cleanBody);
 
+    console.log(requestBody, 'requestBody')
+
+    // Validate the request body
+    if (!requestBody.userId) {
+      return {
+        statusCode: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: "Client is Not Authenticated" }),
+      };
+    }
+
     // Validate the request body
     if (!requestBody.userId || !requestBody.sample_product_name || !requestBody.sample_product_price) {
       return {
@@ -96,6 +110,7 @@ exports.handler = async (event) => {
       userId: { S: requestBody.userId  },
       sample_product_name: { S: requestBody.sample_product_name },
       sample_product_price: { N: requestBody.sample_product_price.toString() },
+      product_image: { S: requestBody.product_image },
       created_at: { S: new Date().toISOString() },
     };
 
